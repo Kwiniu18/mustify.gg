@@ -1,0 +1,67 @@
+.lp-container {
+  width: 100vw;
+  height: 100vh;
+  background-color: rgb(23, 22, 22);
+}
+.lp-title {
+  margin: 0;
+  padding: 0;
+  display: inline-block;
+  width: 55%;
+}
+#lp-title {
+  margin: 0;
+  font-family: monospace;
+  color: whitesmoke;
+  font-size: 8vw;
+  font-weight: lighter;
+  border-right: 3px solid whitesmoke;
+  margin-left: 2vw;
+  overflow: hidden;
+  white-space: nowrap;
+  width: 100%;
+  letter-spacing: 10px;
+  animation: typing 2s steps(11), cursor 0.5s step-end infinite alternate;
+  margin-top: 4vh;
+  margin-left: 5vw;
+}
+@keyframes cursor {
+  50% {
+    border-color: transparent;
+  }
+}
+@keyframes typing {
+  from {
+    width: 0;
+  }
+}
+.lp-button {
+  width: 25%;
+  border-bottom: 1.5px solid whitesmoke;
+  border-top: 1.5px solid whitesmoke;
+  border-right: 1.5px solid whitesmoke;
+  margin-left: 10vw;
+  margin-top: 5vw;
+  height: 6vw;
+  font-family: monospace;
+  color: whitesmoke;
+  font-size: 4vw;
+  letter-spacing: 6px;
+  text-align: right;
+  position: relative;
+  left: -1000px;
+  animation: display 4s;
+  animation-fill-mode: forwards;
+}
+@keyframes display {
+  100% {
+    left: -100px;
+  }
+}
+#lp-button-text {
+  font-family: monospace;
+  color: whitesmoke;
+  position: relative;
+  top: 8px;
+  right: 20px;
+}

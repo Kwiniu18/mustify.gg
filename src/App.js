@@ -1,7 +1,10 @@
 import React from "react";
-import Login from "./Components/Login";
+import Login from "./Components/demo";
+import { RouterProvider } from "react-router-dom";
+import loginRouter from "./Routers/Router";
+import "./Styles/index.scss";
 function App() {
-  return <Login />;
+  return <RouterProvider router={loginRouter} />;
 }
 
 export default App;
