@@ -39,15 +39,42 @@ function Login() {
 
   return (
     <div>
-      {!token ? (
-        <a
-          href={`${AUTH_ENDPOINT}?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=${RESPONSE_TYPE}`}
-        >
-          Login to Spotify
-        </a>
-      ) : (
-        <button onClick={logout}>Logout</button>
-      )}
+      <div className="login-container">
+        <div className="login-title">
+          <h1 id="main-title">Musitify.gg</h1>
+        </div>
+
+        {!token ? (
+          <a
+            href={`${AUTH_ENDPOINT}?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=${RESPONSE_TYPE}`}
+          >
+            Login to Spotify
+          </a>
+        ) : (
+          <button onClick={logout}>Logout</button>
+        )}
+      </div>
+      <div className="ext-container">
+        <div className="ext-title">You should try:</div>
+        <div className="ext-option">
+          <p id="ext-option-title">Your Spotify Top 🔝</p>
+        </div>
+        <div className="ext-option">
+          <p id="ext-option-title">Your Music Receipt 🧾</p>
+        </div>
+        <div className="ext-option">
+          <p id="ext-option-title">Soon ⌛</p>
+        </div>
+        <div className="ext-option">
+          <p id="ext-option-title">Soon ⌛</p>
+        </div>
+      </div>
+      <footer>
+        <img
+          src="https://logos-world.net/wp-content/uploads/2020/09/Spotify-Logo.png"
+          className="spotify-logo"
+        ></img>
+      </footer>
     </div>
   );
 }
