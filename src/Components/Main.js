@@ -1,15 +1,42 @@
 import React from "react";
-
+import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
+import { useState } from "react";
+import axios from "axios";
 function Main() {
+  const [token, setToken] = useState("");
+  useEffect(() => {
+    const hash = window.location.hash;
+    let token = localStorage.getItem("token");
 
-    let token = localStorage.getItem('token')
+    if (!token && hash) {
+      token = hash
+        .substring(1)
+        .split("&")
+        .find((elem) => elem.startsWith("access_token"))
+        .split("=")[1];
+      console.log(token);
+      window.location.hash = "";
+      window.localStorage.setItem("token", token);
+      localStorage.setItem("token", token);
+    }
 
-
+    setToken(token);
+    console.log(token);
+  }, []);
+  axios.defaults.headers.common["Authorization"] = "Bearer " + token;
+  let user_data = axios.get("https://api.spotify.com/v1/me");
+  user_data.then((user_info) => {
+    console.log(user_info.data);
+  });
+  const logout = () => {
+    window.localStorage.removeItem("token");
+  };
   const cards = [
     {
       title: "Your Spotify Top",
       img: "https://th.bing.com/th/id/OIP.IU8Qg4dcbXEqRYPEwQ781gAAAA?pid=ImgDet&rs=1",
-      desc: "See your mostly played songs in spotify!",
+      desc: "See your mostly played songs and artist in spotify!",
       float: "right",
       margin: "30vh",
     },
@@ -41,7 +68,9 @@ function Main() {
                 <p>{e.desc}</p>
               </div>
               <div className="btn-container">
-                <button className="card-btn">Try</button>
+                <button className="card-btn" onClick={logout}>
+                  Try
+                </button>
               </div>
             </div>
           </div>
