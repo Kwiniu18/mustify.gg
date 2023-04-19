@@ -1,0 +1,94 @@
+.main-container {
+  width: 100%;
+  height: 120vh;
+  background-color: rgb(23, 22, 22);
+}
+.main-title {
+  margin: 0;
+  padding: 0;
+  display: inline-block;
+  width: 55%;
+}
+#main-title {
+  margin: 0;
+  font-family: monospace;
+  color: whitesmoke;
+  font-size: 8vw;
+  font-weight: lighter;
+  border-right: 3px solid whitesmoke;
+  margin-left: 2vw;
+  overflow: hidden;
+  white-space: nowrap;
+  width: 100%;
+  letter-spacing: 10px;
+  animation: cursor 0.5s step-end infinite alternate;
+  margin-top: 4vh;
+  margin-left: 5vw;
+}
+@keyframes cursor {
+  50% {
+    border-color: transparent;
+  }
+}
+
+.card {
+  color: whitesmoke;
+  width: 40%;
+  height: 20vw;
+  margin-left: 3vw;
+  margin-right: 3vw;
+}
+.card-title {
+  text-align: center;
+  font-family: monospace;
+  letter-spacing: 5px;
+  font-size: 25px;
+  padding-bottom: 20px;
+}
+.card-content {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+.card-desc {
+  width: 50%;
+  height: 20%;
+  margin-left: 5%;
+  margin-top: 5vh;
+  float: right;
+  margin-right: 5%;
+  padding-left: 20px;
+  text-align: center;
+  word-wrap: break-word;
+  font-size: 18px;
+}
+.btn-container {
+  width: 53%;
+
+  float: right;
+  margin-right: 5%;
+  height: 20%;
+  text-align: center;
+}
+.card-btn {
+  border: none;
+  background: none;
+  color: whitesmoke;
+  font-family: monospace;
+  font-size: 2vw;
+}
+.card-btn:hover {
+  cursor: pointer;
+}
+.card-img {
+  width: 30%;
+
+  margin-left: 5%;
+  height: 70%;
+  float: left;
+  overflow: hidden;
+}
+.margin {
+  width: 100%;
+  height: 10vh;
+}
