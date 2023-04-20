@@ -7,6 +7,7 @@ function Login() {
   const AUTH_ENDPOINT = "https://accounts.spotify.com/authorize";
   const RESPONSE_TYPE = "token";
   const [token, setToken] = useState("");
+
   useEffect(() => {
     const hash = window.location.hash;
     let token = localStorage.getItem("token");
@@ -30,13 +31,13 @@ function Login() {
     setToken("");
     window.localStorage.removeItem("token");
   };
-  if (token != null) {
-    axios.defaults.headers.common["Authorization"] = "Bearer " + token;
-    let user_data = axios.get("https://api.spotify.com/v1/me");
-    user_data.then((user_info) => {
-      console.log(user_info.data);
-    });
-  }
+  // if (token != null) {
+  //   axios.defaults.headers.common["Authorization"] = "Bearer " + token;
+  //   let user_data = axios.get("https://api.spotify.com/v1/me");
+  //   user_data.then((user_info) => {
+  //     console.log(user_info.data);
+  //   });
+  // }
   return (
     <div className="lp-container">
       <div className="lp-title">

@@ -5,10 +5,19 @@ import { useState } from "react";
 import axios from "axios";
 function Main() {
   const [token, setToken] = useState("");
+  const navigate = useNavigate();
+  const type = () => {
+    document.getElementById("main-title").style.display = "none";
+    document.getElementById("name-title").style.display = "block";
+  };
   useEffect(() => {
+    setTimeout(() => type(), 1600);
     const hash = window.location.hash;
     let token = localStorage.getItem("token");
-
+    console.log(token);
+    if (localStorage.getItem("token") == null) {
+      navigate("/login");
+    }
     if (!token && hash) {
       token = hash
         .substring(1)
@@ -24,13 +33,19 @@ function Main() {
     setToken(token);
     console.log(token);
   }, []);
+  console.log(token);
   axios.defaults.headers.common["Authorization"] = "Bearer " + token;
-  let user_data = axios.get("https://api.spotify.com/v1/me");
+  let user_data = axios.get("https://api.spotify.com/v1/me/");
   user_data.then((user_info) => {
     console.log(user_info.data);
+    let nickname = user_info.data.display_name;
+    localStorage.setItem("nickname", nickname);
+    console.log(nickname);
   });
+  console.log(localStorage.getItem("nickname"));
   const logout = () => {
-    window.localStorage.removeItem("token");
+    localStorage.removeItem("token");
+    navigate("/login");
   };
   const cards = [
     {
@@ -53,6 +68,7 @@ function Main() {
       <div className="main-container">
         <div className="main-title">
           <p id="main-title">MUSITIFY.GG</p>
+          <p id="name-title">HI {localStorage.getItem("nickname")}</p>
         </div>
         <div className="margin"></div>
         {cards.map((e) => (
@@ -68,9 +84,7 @@ function Main() {
                 <p>{e.desc}</p>
               </div>
               <div className="btn-container">
-                <button className="card-btn" onClick={logout}>
-                  Try
-                </button>
+                <button className="card-btn">Try</button>
               </div>
             </div>
           </div>

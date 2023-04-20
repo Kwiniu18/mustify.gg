@@ -21,13 +21,41 @@
   white-space: nowrap;
   width: 100%;
   letter-spacing: 10px;
-  animation: cursor 0.5s step-end infinite alternate;
+  animation: reverseTyping 2s steps(11);
   margin-top: 4vh;
   margin-left: 5vw;
+}
+#name-title {
+  display: none;
+  margin: 0;
+  font-family: monospace;
+  color: whitesmoke;
+  font-size: 8vw;
+  font-weight: lighter;
+  border-right: 3px solid whitesmoke;
+  margin-left: 2vw;
+  overflow: hidden;
+  white-space: nowrap;
+  width: 100%;
+  letter-spacing: 10px;
+  animation: typing 2s steps(11), cursor 0.5s step-end infinite alternate;
+  margin-top: 4vh;
+  margin-left: 5vw;
+}
+
+@keyframes reverseTyping {
+  80% {
+    width: 0;
+  }
 }
 @keyframes cursor {
   50% {
     border-color: transparent;
+  }
+}
+@keyframes typing {
+  from {
+    width: 0;
   }
 }
 
@@ -76,6 +104,7 @@
   color: whitesmoke;
   font-family: monospace;
   font-size: 2vw;
+  margin-top: 4vh;
 }
 .card-btn:hover {
   cursor: pointer;
