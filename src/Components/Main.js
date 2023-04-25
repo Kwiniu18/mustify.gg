@@ -11,22 +11,21 @@ function Main() {
     document.getElementById("name-title").style.display = "block";
   };
   useEffect(() => {
-    setTimeout(() => type(), 1600);
+    setTimeout(() => type(), 1630);
     const hash = window.location.hash;
     let token = localStorage.getItem("token");
     console.log(token);
     if (localStorage.getItem("token") == null) {
       navigate("/login");
     }
-    if (!token && hash) {
+    if (token != hash) {
       token = hash
         .substring(1)
         .split("&")
         .find((elem) => elem.startsWith("access_token"))
         .split("=")[1];
       console.log(token);
-      window.location.hash = "";
-      window.localStorage.setItem("token", token);
+
       localStorage.setItem("token", token);
     }
 
