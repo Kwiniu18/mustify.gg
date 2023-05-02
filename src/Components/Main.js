@@ -5,6 +5,7 @@ import { useState } from "react";
 import axios from "axios";
 function Main() {
   const [token, setToken] = useState("");
+  const [top, setTop] = useState([]);
   const navigate = useNavigate();
   const type = () => {
     document.getElementById("main-title").style.display = "none";
@@ -32,19 +33,40 @@ function Main() {
     setToken(token);
     console.log(token);
   }, []);
-  console.log(token);
-  axios.defaults.headers.common["Authorization"] = "Bearer " + token;
-  let user_data = axios.get("https://api.spotify.com/v1/me/");
-  user_data.then((user_info) => {
-    console.log(user_info.data);
-    let nickname = user_info.data.display_name;
-    localStorage.setItem("nickname", nickname);
-    console.log(nickname);
-  });
+  const getMe = async () => {
+    console.log(token);
+    axios.defaults.headers.common["Authorization"] = "Bearer " + token;
+    let user_data = axios.get("https://api.spotify.com/v1/me/");
+    user_data.then((user_info) => {
+      console.log(user_info.data);
+      let nickname = user_info.data.display_name;
+      localStorage.setItem("nickname", nickname);
+      console.log(nickname);
+    });
+  };
+
+  const getTop = () => {
+    axios.defaults.headers.common["Authorization"] = "Bearer " + token;
+    let top_artists = axios.get("https://api.spotify.com/v1/me/top/artists");
+    top_artists.then((artists_array) => {
+      console.log(artists_array.data.items);
+      setTop(artists_array.data.items);
+    });
+  };
+  useEffect(() => {
+    if (token) {
+      getMe();
+      getTop();
+    }
+  }, [token]);
+  console.log(top);
   console.log(localStorage.getItem("nickname"));
   const logout = () => {
     localStorage.removeItem("token");
     navigate("/login");
+  };
+  const navigateTop = () => {
+    navigate("/spotifyTop");
   };
   const cards = [
     {
@@ -53,6 +75,7 @@ function Main() {
       desc: "See your mostly played songs and artist in spotify!",
       float: "right",
       margin: "30vh",
+      route: navigateTop,
     },
     {
       title: "Spotify receipt",
@@ -83,7 +106,9 @@ function Main() {
                 <p>{e.desc}</p>
               </div>
               <div className="btn-container">
-                <button className="card-btn">Try</button>
+                <button className="card-btn" onClick={e.route}>
+                  Try
+                </button>
               </div>
             </div>
           </div>
