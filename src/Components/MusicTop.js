@@ -2,24 +2,25 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 function SpotifyTop() {
-  const [artists, setArtists] = useState([]);
-  const top1 = artists[0];
-  const top2 = artists[1];
-  const top3 = artists[2];
+  const [tracks, setTracks] = useState([]);
+  const top1 = tracks[0];
+  const top2 = tracks[1];
+  const top3 = tracks[2];
   const navigate = useNavigate();
   let token = localStorage.getItem("token");
 
-  const setTopArtists = (artists_array) => {
-    console.log(artists_array.data.items);
-    setArtists(artists_array.data.items);
+  const setTopTracks = (tracks_array) => {
+    console.log(tracks_array.data.items);
+    setTracks(tracks_array.data.items);
   };
 
   const getTop = () => {
     axios.defaults.headers.common["Authorization"] = "Bearer " + token;
-    let top_artists = axios.get(
-      "https://api.spotify.com/v1/me/top/artists?limit=30"
+    let top_tracks = axios.get(
+      "https://api.spotify.com/v1/me/top/tracks?limit=30"
     );
-    top_artists.then(setTopArtists);
+    console.log(top_tracks);
+    top_tracks.then(setTopTracks);
   };
   useEffect(() => {
     if (token) {
@@ -58,31 +59,40 @@ function SpotifyTop() {
           Genre
         </div>
       </div>
-      {artists.length >= 3 && (
+      {tracks.length >= 3 && (
         <div className="podium">
-          <div className="artists-podium">
+          <div className="tracks-podium">
             <div className="top">
-              <img src={top1.images[1].url} alt={top1.name} />
-              <div className="top-name">{"1. " + top1.name}</div>
+              <img src={top1.album?.images[1]?.url} alt={top1.name} />
+              <div className="top-name">
+                {top1.name != "" ? "1. " + top1.name : "1. not from spotify"}
+              </div>
             </div>
             <div className="top">
-              <img src={top2.images[1].url} alt={top2.name} />
-              <div className="top-name">{"2. " + top2.name}</div>
+              <img src={top2.album?.images[1]?.url} alt={top2.name} />
+              <div className="top-name">
+                {top2.name != "" ? "2. " + top2.name : "2. not from spotify"}
+              </div>
             </div>
             <div className="top">
-              <img src={top3.images[1].url} alt={top3.name} />
-              <div className="top-name">{"3. " + top3.name}</div>
+              <img src={top3.album?.images[1]?.url} alt={top3.name} />
+              <div className="top-name">
+                {top3.name != "" ? "3. " + top3.name : "3. not from spotify"}
+              </div>
             </div>
           </div>
         </div>
       )}
-      {artists.length > 3 && (
+      {tracks.length > 3 && (
         <div className="top-artists">
-          {artists
+          {tracks
             .filter((e, i) => i >= 3)
             .map((e, i) => (
               <div className="artist">
-                <img src={e.images[1].url} className="artist-avatar"></img>
+                <img
+                  src={e.album.images[1].url}
+                  className="artist-avatar"
+                ></img>
                 <div className="artist-name">{i + 4 + ". " + e.name}</div>
               </div>
             ))}
