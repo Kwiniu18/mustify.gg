@@ -68,6 +68,9 @@ function Main() {
   const navigateTop = () => {
     navigate("/spotifyTop");
   };
+  const navigateReceipt = () => {
+    navigate("/receipt");
+  };
   const cards = [
     {
       title: "Your Spotify Top",
@@ -82,6 +85,7 @@ function Main() {
       img: "https://64.media.tumblr.com/34b892fc9157ebcfef1ac18e791df059/78f02bde179c89b2-48/s640x960/3907df9143863d56d1014d0f97c9983747caeab3.png",
       desc: "Print your own spotify receipt and share it",
       float: "left",
+      route: navigateReceipt,
     },
   ];
 

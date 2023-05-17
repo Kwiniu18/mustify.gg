@@ -63,19 +63,38 @@ function SpotifyTop() {
         <div className="podium">
           <div className="tracks-podium">
             <div className="top">
-              <img src={top1.album?.images[1]?.url} alt={top1.name} />
+              <img
+                src={
+                  top1.album?.images[1]?.url ||
+                  "https://th.bing.com/th/id/R.c02b44483de0a820a686174d74230407?rik=xig4uooDAyDuEQ&riu=http%3a%2f%2fcdn.onlinewebfonts.com%2fsvg%2fimg_28937.png&ehk=%2bJ7q8pCv81VXn2l3wo3Ft9BoOoT2gH767%2b7Qz%2f2gCkw%3d&risl=&pid=ImgRaw&r=0"
+                }
+                alt={top1.name}
+              />
               <div className="top-name">
                 {top1.name != "" ? "1. " + top1.name : "1. not from spotify"}
               </div>
             </div>
             <div className="top">
-              <img src={top2.album?.images[1]?.url} alt={top2.name} />
+              <img
+                src={
+                  top2.album?.images[1]?.url ||
+                  "https://th.bing.com/th/id/R.c02b44483de0a820a686174d74230407?rik=xig4uooDAyDuEQ&riu=http%3a%2f%2fcdn.onlinewebfonts.com%2fsvg%2fimg_28937.png&ehk=%2bJ7q8pCv81VXn2l3wo3Ft9BoOoT2gH767%2b7Qz%2f2gCkw%3d&risl=&pid=ImgRaw&r=0"
+                }
+                alt={top2.name}
+                width={top2.album?.images[1]?.url ? "" : "300px"}
+              />
               <div className="top-name">
                 {top2.name != "" ? "2. " + top2.name : "2. not from spotify"}
               </div>
             </div>
             <div className="top">
-              <img src={top3.album?.images[1]?.url} alt={top3.name} />
+              <img
+                src={
+                  top3.album?.images[1]?.url ||
+                  "https://th.bing.com/th/id/R.c02b44483de0a820a686174d74230407?rik=xig4uooDAyDuEQ&riu=http%3a%2f%2fcdn.onlinewebfonts.com%2fsvg%2fimg_28937.png&ehk=%2bJ7q8pCv81VXn2l3wo3Ft9BoOoT2gH767%2b7Qz%2f2gCkw%3d&risl=&pid=ImgRaw&r=0"
+                }
+                alt={top3.name}
+              />
               <div className="top-name">
                 {top3.name != "" ? "3. " + top3.name : "3. not from spotify"}
               </div>
@@ -90,7 +109,10 @@ function SpotifyTop() {
             .map((e, i) => (
               <div className="artist">
                 <img
-                  src={e.album.images[1].url}
+                  src={
+                    e.album.images[1].url ||
+                    "https://th.bing.com/th/id/R.c02b44483de0a820a686174d74230407?rik=xig4uooDAyDuEQ&riu=http%3a%2f%2fcdn.onlinewebfonts.com%2fsvg%2fimg_28937.png&ehk=%2bJ7q8pCv81VXn2l3wo3Ft9BoOoT2gH767%2b7Qz%2f2gCkw%3d&risl=&pid=ImgRaw&r=0"
+                  }
                   className="artist-avatar"
                 ></img>
                 <div className="artist-name">{i + 4 + ". " + e.name}</div>

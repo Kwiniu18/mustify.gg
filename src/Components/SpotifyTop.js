@@ -9,6 +9,11 @@ function SpotifyTop() {
   const navigate = useNavigate();
   let token = localStorage.getItem("token");
 
+  const handleImageError = (event) => {
+    event.target.src =
+      "https://th.bing.com/th/id/R.c02b44483de0a820a686174d74230407?rik=xig4uooDAyDuEQ&riu=http%3a%2f%2fcdn.onlinewebfonts.com%2fsvg%2fimg_28937.png&ehk=%2bJ7q8pCv81VXn2l3wo3Ft9BoOoT2gH767%2b7Qz%2f2gCkw%3d&risl=&pid=ImgRaw&r=0";
+  };
+
   const setTopArtists = (artists_array) => {
     console.log(artists_array.data.items);
     setArtists(artists_array.data.items);
@@ -66,7 +71,13 @@ function SpotifyTop() {
               <div className="top-name">{"1. " + top1.name}</div>
             </div>
             <div className="top">
-              <img src={top2.images[1].url} alt={top2.name} />
+              <img
+                src={
+                  top2.images[1].url ||
+                  "https://m.media-amazon.com/images/I/41LYe-tCI9L._AC_UF1000,1000_QL80_.jpg"
+                }
+                alt={top2.name}
+              />
               <div className="top-name">{"2. " + top2.name}</div>
             </div>
             <div className="top">
