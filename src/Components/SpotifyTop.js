@@ -73,8 +73,7 @@ function SpotifyTop() {
             <div className="top">
               <img
                 src={
-                  top2.images[1].url ||
-                  "https://m.media-amazon.com/images/I/41LYe-tCI9L._AC_UF1000,1000_QL80_.jpg"
+                  top2.images[1].url
                 }
                 alt={top2.name}
               />
